@@ -10,10 +10,18 @@ python = "^3.10"
 fastapi = "^0.72.0"
 uvicorn = "^0.17.0"
 pydantic = "^1.9.0"
-databases = { extras = ["mysql"], version = "^0.5.4" }
+databases = "^0.5.4"
 SQLAlchemy = "^1.4.29"
 alembic = "^1.7.5"
-PyMySQL = "^1.0.2"
+PyMySQL = { version = "^0.9", optional = true }
+aiomysql = { version = "^0.0.22", optional = true }
+aiosqlite = { version = "^0.17", optional = true }
+sqlalchemy-json = "^0.4.0"
+SQLAlchemy-Utils = "^0.38.2"
+
+[tool.poetry.extras]
+mysql = ["PyMySQL", "aiomysql"]
+sqlite = ["aiosqlite"]
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.5"

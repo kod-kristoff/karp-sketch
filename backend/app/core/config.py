@@ -10,6 +10,7 @@ API_PREFIX = "/"
 
 SECRET_KEY = config("SECRET_KEY", cast=Secret, default="CHANGEME")
 
+DB_DRIVER = config("DB_DRIVER", cast=str, default="mysql+pymysql")
 DB_USER = config("MARIADB_USER", cast=str)
 DB_PASSWORD = config("MARIADB_PASSWORD", cast=Secret)
 DB_SERVER = config("MARIADB_SERVER", cast=str, default="db")
