@@ -1,0 +1,15 @@
+__
+# Byte-compiled files
+__pycache__/
+.pytest_cache/
+
+# Virtual environments
+.venv/
+
+# Environment files
+.env
+!.env.template
+!.env.example
+
+# IDE settings
+.vscode/
