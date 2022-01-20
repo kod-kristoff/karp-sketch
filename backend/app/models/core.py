@@ -7,4 +7,13 @@ class CoreModel(BaseModel):
 
 
 class IdModelMixin(BaseModel):
-    id: uuid.UUID
+    entity_id: uuid.UUID
+
+
+class VersionMixin(BaseModel):
+    version: int
+
+
+class TimestampMixin(BaseModel):
+    last_modified: float
+    last_modified_by: str

@@ -17,11 +17,11 @@ branch_labels = None
 depends_on = None
 
 
-def upgrade():
+def create_resources_table():
     op.create_table(
         "resources",
         sa.Column("history_id", sa.Integer(), nullable=False),
-        sa.Column("id", UUIDType, nullable=False),
+        sa.Column("entity_id", UUIDType, nullable=False),
         sa.Column("resource_id", sa.String(length=32), nullable=False),
         sa.Column("resource_type", sa.String(length=32), nullable=False),
         sa.Column('entry_repo_id', UUIDType),
@@ -39,6 +39,9 @@ def upgrade():
             "resource_id", "version", name="resource_version_unique_constraint"
         ),
     )
+
+def upgrade():
+    create_resources_table()
     # op.create_table(
     #     "dummy_entry",
     #     sa.Column("id", sa.Integer(), nullable=False),
