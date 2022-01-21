@@ -20,7 +20,7 @@ depends_on = None
 def create_resources_table():
     op.create_table(
         "resources",
-        sa.Column("history_id", sa.Integer(), nullable=False),
+        sa.Column("history_id", sa.Integer(), nullable=False, primary_key=True, autoincrement=True),
         sa.Column("entity_id", UUIDType, nullable=False),
         sa.Column("resource_id", sa.String(length=32), nullable=False),
         sa.Column("resource_type", sa.String(length=32), nullable=False),
@@ -32,8 +32,8 @@ def create_resources_table():
         sa.Column("last_modified", sa.Float, nullable=False),
         sa.Column("last_modified_by", sa.String(100), nullable=False),
         sa.Column("message", sa.String(100), nullable=False),
-        sa.Column("op", sa.Enum("ADDED", "UPDATED", "DELETED"), nullable=False),
-        sa.Column("discarded", sa.Boolean(), nullable=True),
+        sa.Column("op", sa.Enum("ADDED", "UPDATED", "DELETED"), nullable=False, default="ADDED"),
+        sa.Column("discarded", sa.Boolean(), nullable=True, default=False),
         sa.PrimaryKeyConstraint("history_id"),
         sa.UniqueConstraint(
             "resource_id", "version", name="resource_version_unique_constraint"

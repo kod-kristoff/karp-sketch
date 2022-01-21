@@ -4,7 +4,6 @@ from app.models.resource import ResourceCreate, ResourceInDB
 
 CREATE_RESOURCE_QUERY = """
     INSERT INTO resources (
-        history_id,
         entity_id,
         resource_id,
         resource_type,
@@ -15,11 +14,8 @@ CREATE_RESOURCE_QUERY = """
         is_published,
         last_modified,
         last_modified_by,
-        message,
-        op,
-        discarded)
+        message)
     VALUES (
-        :history_id,
         :entity_id,
         :resource_id,
         :resource_type,
@@ -30,9 +26,7 @@ CREATE_RESOURCE_QUERY = """
         :is_published,
         :last_modified,
         :last_modified_by,
-        :message,
-        :op,
-        :discarded)
+        :message)
     RETURNING
         history_id,
         entity_id,

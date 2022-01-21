@@ -1,8 +1,8 @@
 from enum import Enum
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 from uuid import UUID
 
-from app.models.core import IdModelMixin, CoreModel, TimestampMixin, VersionMixin
+from app.models.core import EntityOpMixin, IdModelMixin, CoreModel, TimestampMixin, VersionMixin
 
 
 class ResourceOp(str, Enum):
@@ -17,8 +17,8 @@ class ResourceBase(CoreModel):
     config: Dict[str, Any]
     message: str
     entry_repo_id: UUID
-    op: ResourceOp = ResourceOp.ADDED,
-    is_published: bool = False,
+    is_published: Optional[bool]
+    resource_type: Optional[str] = "resource"
 
 
 class ResourceCreate(
@@ -33,14 +33,17 @@ class ResourceInDB(
     IdModelMixin,
     TimestampMixin,
     VersionMixin,
+    EntityOpMixin,
     ResourceBase
 ):
     history_id: int
+
 
 class ResourcePublic(
     IdModelMixin,
     TimestampMixin,
     VersionMixin,
+    EntityOpMixin,
     ResourceBase,
 ):
     pass

@@ -20,5 +20,5 @@ DB_DATABASE = config("MARIADB_DATABASE", cast=str)
 DATABASE_URL = config(
     "DATABASE_URL",
     cast=DatabaseURL,
-    default=f"mysql://{DB_USER}:{DB_PASSWORD}@{DB_SERVER}:{DB_PORT}/{DB_DATABASE}"
+    default=f"{DB_DRIVER}://{DB_USER}:{DB_PASSWORD}@{DB_SERVER}:{DB_PORT}/{DB_DATABASE}"
 )

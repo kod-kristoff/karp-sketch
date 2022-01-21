@@ -13,8 +13,11 @@ RUN pip install --upgrade pip
 
 RUN pip install poetry && poetry config virtualenvs.create false
 
+COPY ./pyproject.toml ./poetry.lock* /backend/
+RUN poetry install -E mysql --no-root
 # Chown all the files to the app user.
-COPY . .
+COPY . /backend
 
-RUN poetry install
+RUN poetry config virtualenvs.create
+RUN poetry install -E mysql
 

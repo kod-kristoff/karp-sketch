@@ -1,9 +1,19 @@
+
+from enum import Enum
 import uuid
+
 from pydantic import BaseModel
 
 
 class CoreModel(BaseModel):
     pass
+
+class EntityOp(str, Enum):
+    ADDED = "ADDED"
+    UPDATED = "UPDATED"
+    DELETED = "DELETED"
+class EntityOpMixin(BaseModel):
+    op: EntityOp
 
 
 class IdModelMixin(BaseModel):

@@ -27,9 +27,9 @@ async def get_all_resources() -> List[Dict]:
     status_code=status.HTTP_201_CREATED,
 )
 async def create_new_resource(
-    new_resource: ResourceCreate = Body(..., embed=True),
+    new_resource: ResourceCreate = Body(...),
     resource_repo: ResourceRepository = Depends(get_repository(ResourceRepository)),
 )-> ResourcePublic:
-    created_resource = await resource_repo.create_resource(new_resource)
+    created_resource = await resource_repo.create_resource(new_resource=new_resource)
 
     return created_resource
