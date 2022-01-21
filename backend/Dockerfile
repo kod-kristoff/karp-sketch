@@ -11,7 +11,7 @@ RUN apt-get update \
 
 RUN pip install --upgrade pip
 
-RUN pip install poetry && poetry config virtualenvs.in-project true
+RUN pip install poetry && poetry config virtualenvs.create false
 
 # Chown all the files to the app user.
 COPY . .

@@ -21,7 +21,7 @@ services:
     env_file:
       - ./backend/.env
     ports:
-      - 3307:3306
+      - 13306:3306
 
 volumes:
   mariadb_data:
